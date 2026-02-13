@@ -764,14 +764,15 @@ function App() {
                   and your presence makes me feel safe and comfortable. Every moment with you is a treasure.
                 </p>
 
-                <div className="relative p-8 rounded-2xl bg-gradient-to-r from-pink-900/30 to-red-900/30 border-l-4 border-pink-400 shadow-inner">
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-pink-500 to-red-500 text-white px-6 py-2 rounded-full text-sm font-semibold shadow-md">
+                <div className="relative p-6 md:p-8 rounded-2xl bg-gradient-to-r from-pink-900/30 to-red-900/30 border-l-4 border-pink-400 shadow-inner">
+                  <div className="absolute -top-3 md:-top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-pink-500 to-red-500 text-white px-4 md:px-6 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-semibold shadow-md whitespace-nowrap">
                     My Promise to You
                   </div>
-                  <p className="text-center text-2xl md:text-3xl font-sacramento text-pink-200 italic">
+                  <p className="text-center text-lg sm:text-xl md:text-2xl lg:text-3xl font-sacramento text-pink-200 italic leading-relaxed">
                     "I will love you in every universe, in every lifetime, in every possible way."
                   </p>
                 </div>
+
 
                 <p className="text-justify">
                   What I love most about you is your kind heart. You care deeply,
@@ -1009,9 +1010,7 @@ function App() {
             <section className="py-24 px-6 bg-gradient-to-b from-pink-100 to-white">
               <div className="max-w-4xl mx-auto text-center">
                 <div className="inline-flex items-center space-x-3 mb-12">
-                  <div className="w-16 h-16 rounded-full bg-gradient-to-r from-pink-500 to-red-500 flex items-center justify-center shadow-xl">
-                    <span className="text-3xl">🎵</span>
-                  </div>
+                  
                   <h2 className="text-5xl md:text-6xl font-dancing bg-gradient-to-r from-pink-500 to-red-600 bg-clip-text text-transparent">
                     Our Special Song
                   </h2>
