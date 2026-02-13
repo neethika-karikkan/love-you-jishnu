@@ -116,7 +116,7 @@ function App() {
       const timer = setTimeout(() => {
         setFlashScreen(false)
         setShowApp(true)
-      }, 2000)
+      }, 4000)
 
       return () => clearTimeout(timer)
     }
@@ -415,7 +415,7 @@ function App() {
               {['❤️', '💖', '💗', '💕', '💓'][Math.floor(Math.random() * 5)]}
             </div>
           ))}
-        </div>
+        </div> 
 
         {/* Main Content */}
         <div className="relative z-10 text-center px-6">
@@ -431,14 +431,14 @@ function App() {
 
           {/* Loading Animation */}
           <div className="mt-12">
-            <div className="flex justify-center space-x-3 mb-4">
+            <div className="flex justify-center space-x-3 mb-12">
               {[1, 2, 3].map((i) => (
                 <div
                   key={i}
                   className="w-4 h-4 bg-white rounded-full animate-bounce"
                   style={{
-                    animationDelay: `${i * 0.1}s`,
-                    animationDuration: '0.6s'
+                    animationDelay: `${i * 0.9}s`,
+                    animationDuration: '1.09s'
                   }}
                 ></div>
               ))}
