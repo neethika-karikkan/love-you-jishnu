@@ -800,7 +800,7 @@ function App() {
               </div>
             </section>
 
-            {/* Photo & Video Collage Section */}
+            {/* Photo & Video Collage Section - FIXED PHOTO FOR MOBILE */}
             <section className="py-24 px-6 bg-gradient-to-b from-white to-pink-50 relative">
               {/* Background Elements */}
               <div className="absolute top-10 left-10 w-64 h-64 bg-gradient-to-r from-pink-300/20 to-red-300/20 rounded-full blur-3xl"></div>
@@ -827,75 +827,75 @@ function App() {
 
                 {/* Photo Collage Container */}
                 <div className="relative">
-                  {/* Main Photo Frame */}
-                  <div className="max-w-3xl mx-auto mb-16">
+                  {/* Main Photo Frame - Fixed for mobile view */}
+                  <div className="max-w-3xl mx-auto mb-16 px-4">
                     <div className="relative group">
                       {/* Polaroid-style Frame */}
-                      <div className="bg-white rounded-2xl shadow-2xl p-6 rotate-2 transform hover:rotate-0 transition-transform duration-500">
+                      <div className="bg-white rounded-2xl shadow-2xl p-4 md:p-6 rotate-2 transform hover:rotate-0 transition-transform duration-500">
                         <div className="bg-gradient-to-br from-pink-100 to-red-100 rounded-xl overflow-hidden shadow-inner">
                           <img
                             src={ourPhoto}
                             alt="Our beautiful memory"
-                            className="w-full h-[500px] object-cover transform group-hover:scale-105 transition-transform duration-700"
+                            className="w-full h-auto object-contain max-h-[80vh] md:max-h-[500px] transform group-hover:scale-105 transition-transform duration-700"
                           />
                         </div>
 
                         {/* Polaroid Bottom */}
-                        <div className="mt-6 p-4 border-t border-pink-100">
-                          <p className="text-2xl font-dancing text-red-700 text-center mb-2">
+                        <div className="mt-4 md:mt-6 p-4 border-t border-pink-100">
+                          <p className="text-xl md:text-2xl font-dancing text-red-700 text-center mb-2">
                             Our Special Moment 💕
                           </p>
-                          <p className="text-red-600 text-center">
+                          <p className="text-sm md:text-base text-red-600 text-center">
                             This photo captures the love we share
                           </p>
                         </div>
                       </div>
 
                       {/* Decorative Elements Around Photo */}
-                      <div className="absolute -top-6 -left-6 w-24 h-24 bg-gradient-to-r from-pink-400 to-red-400 rounded-full opacity-20 blur-xl"></div>
-                      <div className="absolute -bottom-6 -right-6 w-28 h-28 bg-gradient-to-r from-red-400 to-pink-400 rounded-full opacity-20 blur-xl"></div>
+                      <div className="absolute -top-4 md:-top-6 -left-4 md:-left-6 w-16 md:w-24 h-16 md:h-24 bg-gradient-to-r from-pink-400 to-red-400 rounded-full opacity-20 blur-xl"></div>
+                      <div className="absolute -bottom-4 md:-bottom-6 -right-4 md:-right-6 w-20 md:w-28 h-20 md:h-28 bg-gradient-to-r from-red-400 to-pink-400 rounded-full opacity-20 blur-xl"></div>
 
                       {/* Floating Hearts */}
-                      <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-r from-pink-500 to-red-500 rounded-full flex items-center justify-center shadow-xl animate-bounce-slow">
-                        <span className="text-2xl text-white">💖</span>
+                      <div className="absolute -top-4 -right-4 w-12 md:w-16 h-12 md:h-16 bg-gradient-to-r from-pink-500 to-red-500 rounded-full flex items-center justify-center shadow-xl animate-bounce-slow">
+                        <span className="text-xl md:text-2xl text-white">💖</span>
                       </div>
-                      <div className="absolute -bottom-4 -left-4 w-14 h-14 bg-gradient-to-r from-red-500 to-pink-500 rounded-full flex items-center justify-center shadow-xl animate-bounce-slow" style={{ animationDelay: '0.5s' }}>
-                        <span className="text-xl text-white">🌸</span>
+                      <div className="absolute -bottom-4 -left-4 w-10 md:w-14 h-10 md:h-14 bg-gradient-to-r from-red-500 to-pink-500 rounded-full flex items-center justify-center shadow-xl animate-bounce-slow" style={{ animationDelay: '0.5s' }}>
+                        <span className="text-lg md:text-xl text-white">🌸</span>
                       </div>
                     </div>
                   </div>
 
-                  {/* Video Memory Cards */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {/* Video Memory Cards - Normal grid layout (no horizontal scroll) */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 px-4">
                     {memories.map((memory, index) => (
                       <div
                         key={memory.id}
                         onClick={() => playVideo(memory.id)}
-                        className="group bg-white/80 backdrop-blur-sm rounded-2xl p-8 transform hover:scale-[1.05] transition-all duration-500 shadow-xl hover:shadow-2xl border border-white/50 hover:border-pink-200 relative overflow-hidden cursor-pointer"
+                        className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 md:p-8 transform hover:scale-[1.05] transition-all duration-500 shadow-xl hover:shadow-2xl border border-white/50 hover:border-pink-200 relative overflow-hidden cursor-pointer"
                         style={{
                           animation: `fadeIn 1s ease-out ${index * 0.2}s forwards`,
                           opacity: 0
                         }}
                       >
                         {/* Memory Emoji Icon */}
-                        <div className="w-24 h-24 mx-auto rounded-full bg-gradient-to-r from-pink-400 to-red-400 flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 group-hover:rotate-12 transition-all duration-500">
-                          <span className="text-4xl">{memory.emoji}</span>
+                        <div className="w-20 h-20 md:w-24 md:h-24 mx-auto rounded-full bg-gradient-to-r from-pink-400 to-red-400 flex items-center justify-center mb-4 md:mb-6 shadow-lg group-hover:scale-110 group-hover:rotate-12 transition-all duration-500">
+                          <span className="text-3xl md:text-4xl">{memory.emoji}</span>
                         </div>
 
                         {/* Memory Info */}
                         <div className="relative z-10">
-                          <h3 className="text-2xl font-bold text-red-700 text-center mb-4">
+                          <h3 className="text-xl md:text-2xl font-bold text-red-700 text-center mb-3 md:mb-4">
                             {memory.title}
                           </h3>
-                          <p className="text-gray-600 text-center mb-6">
+                          <p className="text-sm md:text-base text-gray-600 text-center mb-4 md:mb-6">
                             {memory.description}
                           </p>
 
                           {/* Play Video Button */}
                           <div className="flex justify-center">
-                            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-pink-100 to-red-100 px-6 py-3 rounded-full group-hover:from-pink-200 group-hover:to-red-200 transition-all duration-300">
-                              <span className="text-red-600 text-xl">▶️</span>
-                              <span className="text-red-700 font-medium">Click to Watch Video</span>
+                            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-pink-100 to-red-100 px-4 md:px-6 py-2 md:py-3 rounded-full group-hover:from-pink-200 group-hover:to-red-200 transition-all duration-300">
+                              <span className="text-red-600 text-lg md:text-xl">▶️</span>
+                              <span className="text-red-700 text-sm md:text-base font-medium">Click to Watch Video</span>
                             </div>
                           </div>
                         </div>
@@ -904,7 +904,7 @@ function App() {
                         <div className="absolute inset-0 bg-gradient-to-br from-pink-500/0 to-red-500/0 group-hover:from-pink-500/10 group-hover:to-red-500/10 transition-all duration-500"></div>
 
                         {/* Corner Accent */}
-                        <div className="absolute top-0 right-0 w-12 h-12 bg-gradient-to-br from-pink-400/20 to-red-400/20 rounded-bl-2xl"></div>
+                        <div className="absolute top-0 right-0 w-8 h-8 md:w-12 md:h-12 bg-gradient-to-br from-pink-400/20 to-red-400/20 rounded-bl-2xl"></div>
                       </div>
                     ))}
                   </div>
@@ -1130,7 +1130,7 @@ function App() {
 
               {/* Emoji Buttons */}
               <div className="flex justify-center space-x-8 mb-10">
-                {['💌', '❤️', '🌹', '🌸', '💝', '💕', '💘'].map((emoji, i) => (
+                {[ '💕' ].map((emoji, i) => (
                   <button
                     key={i}
                     className="text-3xl hover:scale-125 hover:text-pink-300 transition-all duration-300 transform hover:rotate-12"
