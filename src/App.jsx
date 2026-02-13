@@ -10,6 +10,12 @@ function App() {
   const [clickHearts, setClickHearts] = useState([])
   const [showLetter, setShowLetter] = useState(false)
   const [musicPlaying, setMusicPlaying] = useState(false)
+  const [showPinModal, setShowPinModal] = useState(false)
+  const [pinInput, setPinInput] = useState('')
+  const [pinError, setPinError] = useState('')
+  
+  // Secret PIN (27102023)
+  const SECRET_PIN = '27102023'
   
   // Use refs for video popup to prevent re-renders
   const playingVideoRef = useRef(null)
@@ -69,7 +75,7 @@ function App() {
 
   // Prevent background scrolling when modal is open and save scroll position
   useEffect(() => {
-    if (showLetter || playingVideoRef.current) {
+    if (showLetter || playingVideoRef.current || showPinModal) {
       scrollPosition.current = window.scrollY
       document.body.style.overflow = "hidden"
     } else {
@@ -88,7 +94,7 @@ function App() {
     return () => {
       document.body.style.overflow = "auto"
     }
-  }, [showLetter])
+  }, [showLetter, showPinModal])
 
   // Effect to restore scroll when video closes
   useEffect(() => {
@@ -103,7 +109,6 @@ function App() {
       }, 100)
     }
   }, [videoCloseTrigger])
-
 
   // Flash screen animation - show for 2 seconds then transition
   useEffect(() => {
@@ -289,6 +294,33 @@ function App() {
     if (audioRef.current && audioRef.current.paused) {
       // Audio context can be resumed here if needed
     }
+  }
+
+  // Handle love letter button click - show PIN modal
+  const handleLoveLetterClick = () => {
+    setShowPinModal(true)
+    setPinInput('')
+    setPinError('')
+  }
+
+  // Handle PIN submission
+  const handlePinSubmit = () => {
+    if (pinInput === SECRET_PIN) {
+      setShowPinModal(false)
+      setShowLetter(true)
+      setPinInput('')
+      setPinError('')
+    } else {
+      setPinError('Incorrect PIN. Try again! 💕')
+      setPinInput('')
+    }
+  }
+
+  // Handle PIN modal close
+  const handlePinModalClose = () => {
+    setShowPinModal(false)
+    setPinInput('')
+    setPinError('')
   }
 
   // Play video function - uses ref to avoid re-renders
@@ -537,6 +569,76 @@ function App() {
       </div>
 
       {/* ============================== */}
+      {/* PIN MODAL - BEFORE LOVE LETTER */}
+      {/* ============================== */}
+      {showPinModal && (
+        <div className="fixed inset-0 bg-black/70 z-[100] flex items-center justify-center p-4">
+          <div className="bg-gradient-to-br from-pink-500 to-red-600 rounded-3xl p-1 shadow-2xl max-w-md w-full">
+            <div className="bg-white rounded-2xl p-8 relative">
+              {/* Close Button */}
+              <button
+                onClick={handlePinModalClose}
+                className="absolute top-4 right-4 w-10 h-10 rounded-full bg-pink-100 hover:bg-pink-200 flex items-center justify-center transition-colors"
+              >
+                <span className="text-pink-600 text-xl">✕</span>
+              </button>
+
+              {/* Modal Header */}
+              <div className="text-center mb-8">
+                
+                <h2 className="text-3xl font-dancing font-bold text-red-700 mb-2">
+                  Private Love Letter
+                </h2>
+                <p className="text-pink-600">
+                  Enter the secret PIN to open my heart to you
+                </p>
+              </div>
+
+              {/* PIN Input */}
+              <div className="mb-6">
+                <label className="block text-red-700 font-medium mb-2 text-center">
+                  Enter PIN (8 digits)
+                </label>
+                <input
+                  type="password"
+                  maxLength="8"
+                  value={pinInput}
+                  onChange={(e) => setPinInput(e.target.value)}
+                  className="w-full px-4 py-3 text-center text-2xl tracking-widest border-2 border-pink-200 rounded-xl focus:border-red-400 focus:outline-none transition-colors"
+                  placeholder="••••••••"
+                  autoFocus
+                />
+                {pinError && (
+                  <p className="text-red-500 text-sm mt-2 text-center animate-pulse">
+                    {pinError}
+                  </p>
+                )}
+              </div>
+
+              {/* Hint */}
+              <div className="bg-pink-50 rounded-xl p-4 mb-6">
+                <p className="text-sm text-red-600 text-center">
+                  💝 Hint: Our special date (DDMMYYYY)
+                </p>
+              </div>
+
+              {/* Submit Button */}
+              <button
+                onClick={handlePinSubmit}
+                className="w-full bg-gradient-to-r from-pink-500 to-red-500 text-white py-3 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-300 flex items-center justify-center space-x-2"
+              >
+                
+                <span>Open Love Letter</span>
+              </button>
+
+              {/* Decorative Hearts */}
+              
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ============================== */}
       {/* VIDEO PLAYER MODAL - FIXED POPUP */}
       {/* ============================== */}
       {playingVideoRef.current && (
@@ -725,7 +827,7 @@ function App() {
       {/* ============================== */}
       {/* MAIN APP CONTENT (Only shown when no modal is open) */}
       {/* ============================== */}
-      {!showLetter && !playingVideoRef.current && (
+      {!showLetter && !playingVideoRef.current && !showPinModal && (
         <>
           {/* Main Content */}
           <main>
@@ -780,15 +882,16 @@ function App() {
                   </p>
                 </div>
 
-                {/* Love Letter Button */}
+                {/* Love Letter Button - Updated with PIN protection */}
                 <button
-                  onClick={() => setShowLetter(true)}
+                  onClick={handleLoveLetterClick}
                   className="group relative bg-gradient-to-r from-pink-500 to-red-500 text-white px-12 py-5 rounded-full text-xl font-semibold shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-500 overflow-hidden mb-16"
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-red-500 to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   <span className="relative z-10 flex items-center justify-center space-x-3">
-                    <span className="text-2xl">💌</span>
+                    
                     <span>Open My Love Letter</span>
+                    <span className="text-2xl">💌</span>
                   </span>
                 </button>
 
