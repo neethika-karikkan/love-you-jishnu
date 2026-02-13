@@ -13,10 +13,10 @@ function App() {
   const [showPinModal, setShowPinModal] = useState(false)
   const [pinInput, setPinInput] = useState('')
   const [pinError, setPinError] = useState('')
-  
+
   // Secret PIN (27102023)
   const SECRET_PIN = '27102023'
-  
+
   // Use refs for video popup to prevent re-renders
   const playingVideoRef = useRef(null)
   const videoLoadingRef = useRef(false)
@@ -330,7 +330,7 @@ function App() {
 
     // Save scroll position before opening video
     scrollPosition.current = window.scrollY
-    
+
     videoLoadingRef.current = true
     playingVideoRef.current = videoId
 
@@ -338,7 +338,7 @@ function App() {
     if (playingVideoRef.current && videoRefs.current[playingVideoRef.current]) {
       videoRefs.current[playingVideoRef.current].pause()
     }
-    
+
     // Trigger scroll effect
     setVideoCloseTrigger(0)
   }
@@ -351,7 +351,7 @@ function App() {
     }
     playingVideoRef.current = null
     videoLoadingRef.current = false
-    
+
     // Trigger effect to restore scroll
     setVideoCloseTrigger(prev => prev + 1)
   }
@@ -585,7 +585,7 @@ function App() {
 
               {/* Modal Header */}
               <div className="text-center mb-8">
-                
+
                 <h2 className="text-3xl font-dancing font-bold text-red-700 mb-2">
                   Private Love Letter
                 </h2>
@@ -627,12 +627,12 @@ function App() {
                 onClick={handlePinSubmit}
                 className="w-full bg-gradient-to-r from-pink-500 to-red-500 text-white py-3 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-300 flex items-center justify-center space-x-2"
               >
-                
+
                 <span>Open Love Letter</span>
               </button>
 
               {/* Decorative Hearts */}
-              
+
             </div>
           </div>
         </div>
@@ -713,7 +713,7 @@ function App() {
                 <p className="text-pink-200 text-lg italic">
                   Every moment with you is a treasure 💕
                 </p>
-                
+
               </div>
             </div>
           </div>
@@ -807,17 +807,7 @@ function App() {
                 </p>
 
                 {/* Decorative Elements */}
-                <div className="flex justify-center space-x-4">
-                  {['🌹', '💐', '❤️', '💮', '💖'].map((emoji, i) => (
-                    <span
-                      key={i}
-                      className="text-2xl transform hover:scale-125 transition-transform"
-                      style={{ animation: `bounce-slow 2s infinite ${i * 0.2}s` }}
-                    >
-                      {emoji}
-                    </span>
-                  ))}
-                </div>
+
               </div>
             </div>
           </div>
@@ -889,7 +879,7 @@ function App() {
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-red-500 to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   <span className="relative z-10 flex items-center justify-center space-x-3">
-                    
+
                     <span>Open My Love Letter</span>
                     <span className="text-2xl">💌</span>
                   </span>
@@ -1053,8 +1043,8 @@ function App() {
                     <button
                       onClick={toggleMusic}
                       className={`px-8 py-3 rounded-full font-semibold shadow-lg transform hover:scale-105 transition-all duration-300 flex items-center space-x-3 ${musicPlaying
-                          ? 'bg-gradient-to-r from-red-500 to-pink-500 text-white'
-                          : 'bg-gradient-to-r from-pink-500 to-red-500 text-white'
+                        ? 'bg-gradient-to-r from-red-500 to-pink-500 text-white'
+                        : 'bg-gradient-to-r from-pink-500 to-red-500 text-white'
                         }`}
                     >
                       <span className="text-xl">
@@ -1233,7 +1223,7 @@ function App() {
 
               {/* Emoji Buttons */}
               <div className="flex justify-center space-x-8 mb-10">
-                {[ '💕' ].map((emoji, i) => (
+                {['💕'].map((emoji, i) => (
                   <button
                     key={i}
                     className="text-3xl hover:scale-125 hover:text-pink-300 transition-all duration-300 transform hover:rotate-12"
@@ -1257,14 +1247,17 @@ function App() {
           </footer>
 
           {/* Floating Message */}
-          <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-pink-100 to-red-100 backdrop-blur-sm px-8 py-4 rounded-full shadow-2xl border border-pink-300 z-40" style={{ animation: 'bounce-slow 2s infinite' }}>
-            <p className="text-red-700 font-semibold flex items-center space-x-3">
-              <span className="flex items-center space-x-2">
-                <span>I love you, Jishnu!</span>
-                <span className="text-pink-500 font-dancing">- Neethii 💖</span>
+          {/* Floating Message */}
+          <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-pink-100 to-red-100 backdrop-blur-sm px-4 sm:px-8 py-3 sm:py-4 rounded-full shadow-2xl border border-pink-300 z-40" style={{ animation: 'bounce-slow 2s infinite' }}>
+            <p className="text-red-700 font-semibold flex items-center space-x-2 sm:space-x-3">
+              <span className="flex items-center space-x-1 sm:space-x-2">
+                <span className="text-sm sm:text-base md:text-lg">I love you, Jishnu!</span>
+                <span className="text-pink-500 font-dancing text-xs sm:text-sm md:text-base">- Neethii 💖</span>
               </span>
             </p>
           </div>
+
+
         </>
       )}
     </div>
